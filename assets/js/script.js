@@ -1,10 +1,10 @@
 let pergunta = {
-    titulo: 'qual a capital de portugal?'
-    alternativa:['lisbon','porto','ermesinde','coimbra'],
-    correcta: 0
+    titulo: 'Gato',
+    alternativa:['Gat','Cat','Gate','Dog'],
+    correcta: 1
 };
 function showquestion (q) {
-    let titleDiv= document.getElementById('titulo');
+    let titleDiv = document.getElementById('titulo');
     titleDiv.textContent= q.titulo;
 }
 showquestion(pergunta);
