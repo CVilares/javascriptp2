@@ -1,27 +1,2 @@
-#quiz {
-  max-width: 500px;
-  margin: 0 auto;
-}
 
-#question {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-#choices {
-  margin-top: 20px;
-}
-
-.choice {
-  display: block;
-  margin-bottom: 10px;
-}
-
-#submit {
-  margin-top: 20px;
-}
-
-#score {
-  margin-top: 20px;
-  font-weight: bold;
-}
+  
