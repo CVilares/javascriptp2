@@ -79,7 +79,24 @@ let app = {
   updateScore: function () {
     let scoreDiv = document.getElementById('score');
     scoreDiv.textContent = `Your score is: ${this.totalscore}`;
+  },
+
+  showResult : function(correcta){
+    let resultDiv = document.getElementById ('result')
+    let result=''
+  if (correcta == true){
+    result = 'correct answer'
   }
-};
+  else{
+    let pergunta = perguntas[this.Atualpos];
+    let cindice = pergunta.correcta;
+    let ctexto = pergunta.alternativas[index];
+    result= 'wrong answer ${cindice.ctexto}';
+
+  }
+
+}
+}
+
 
 app.start();
