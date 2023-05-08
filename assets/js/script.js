@@ -1,102 +1,85 @@
-let perguntas = [
+let questions = [
   {
-    titulo: 'Gato',
-    alternativas: ['Gat', 'Cat', 'Gate', 'Dog'],
-    correcta: 1
+    title: 'Who is the president of Sporting Clube de Portugal?',
+    alternatives: ['Frederico Varandas', 'Bruno de Carvalho', 'Pedro Proença', 'Jorge Jesus'],
+    correct: 0
   },
   {
-    titulo: 'pato',
-    alternativas: ['duck', 'Cat', 'Gate', 'Dog'],
-    correcta: 0
+    title: 'How many times has Sporting Clube de Portugal won the UEFA Champions League?',
+    alternatives: ['1', '2', '3', 'Never won'],
+    correct: 3
   },
   {
-    titulo: 'cao',
-    alternativas: ['Gat', 'Cat', 'Gate', 'Dog'],
-    correcta: 3
+    title: 'Which stadium is used by Sporting Clube de Portugal?',
+    alternatives: ['Estádio da Luz', 'Estádio José Alvalade', 'Estádio do Dragão', 'Estádio Municipal de Braga'],
+    correct: 1
   },
   {
-    titulo: 'passaro',
-    alternativas: ['Gat', 'bird', 'Gate', 'Dog'],
-    correcta: 1
+    title: 'What year was Sporting Clube de Portugal founded?',
+    alternatives: ['1904', '1910', '1922', '1945'],
+    correct: 0
   },
   {
-    titulo: 'lagarto',
-    alternativas: ['Gat', 'lizard', 'Gate', 'Dog'],
-    correcta: 1
+    title: 'Who is the all-time leading goal scorer for Sporting Clube de Portugal?',
+    alternatives: ['Cristiano Ronaldo', 'Fernando Peyroteo', 'Luís Figo', 'Ricardo Quaresma'],
+    correct: 1
   },
   {
-    titulo: 'leao',
-    alternativas: ['Gat', 'Cat', 'lion', 'Dog'],
-    correcta: 2
+    title: 'Which team is considered the main rival of Sporting Clube de Portugal?',
+    alternatives: ['SL Benfica', 'FC Porto', 'SC Braga', 'Vitória de Guimarães'],
+    correct: 0
   }
 ];
 
 let app = {
-  totalscore: 0,
-  Atualpos: 0,
+  totalScore: 0,
+  currentPos: 0,
   
   start: function () {
-    let alts = document.querySelectorAll('.alternativa');
-    alts.forEach((element, index) => {
+    let alternatives = document.querySelectorAll('.alternative');
+    alternatives.forEach((element, index) => {
       element.addEventListener('click', () => {
         this.checkAnswer(index);
       });
     });
-    this.mostraquestao(perguntas[this.Atualpos]);
+    this.showQuestion(questions[this.currentPos]);
   },
 
-  mostraquestao: function (q) {
-    this.qatual = q;
-    //showing title
-    let titleDiv = document.getElementById('titulo');
-    titleDiv.textContent = q.titulo;
-    //showing alternatives
-    let alts = document.querySelectorAll('.alternativa');
-    alts.forEach(function (element, index) {
-      element.textContent = q.alternativas[index];
+  showQuestion: function (q) {
+    this.currentQuestion = q;
+    // Showing title
+    let titleDiv = document.getElementById('title');
+    titleDiv.textContent = q.title;
+    // Showing alternatives
+    let alternatives = document.querySelectorAll('.alternative');
+    alternatives.forEach(function (element, index) {
+      element.textContent = q.alternatives[index];
     });
   },
 
-  nextquestion: function (user) {
-    this.Atualpos++;
-    if (this.Atualpos == perguntas.length) {
-      this.Atualpos = 0;
+  nextQuestion: function () {
+    this.currentPos++;
+    if (this.currentPos == questions.length) {
+      this.currentPos = 0;
     }
   },
 
   checkAnswer: function (user) {
-    if (this.qatual.correcta == user) {
-      console.log('correcta');
-      this.totalscore++;
+    if (this.currentQuestion.correct === user) {
+      console.log('Correct answer');
+      this.totalScore++;
     } else {
-      console.log('Errada');
+      console.log('Wrong answer');
     }
     this.updateScore();
-    this.nextquestion();
-    this.mostraquestao(perguntas[this.Atualpos]);
+    this.nextQuestion();
+    this.showQuestion(questions[this.currentPos]);
   },
 
   updateScore: function () {
     let scoreDiv = document.getElementById('score');
-    scoreDiv.textContent = `Your score is: ${this.totalscore}`;
-  },
-
-  showResult : function(correcta){
-    let resultDiv = document.getElementById ('result')
-    let result=''
-  if (correcta == true){
-    result = 'correct answer'
+    scoreDiv.textContent = `Your score is: ${this.totalScore}`;
   }
-  else{
-    let pergunta = perguntas[this.Atualpos];
-    let cindice = pergunta.correcta;
-    let ctexto = pergunta.alternativas[index];
-    result= 'wrong answer ${cindice.ctexto}';
-
-  }
-
 }
-}
-
 
 app.start();
